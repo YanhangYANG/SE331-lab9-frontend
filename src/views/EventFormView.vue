@@ -7,6 +7,7 @@ import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { useMessageStore } from '@/stores/message';
 import BaseInput from "@/components/BaseInput.vue";
+import BaseSelect from "@/components/icons/BaseSelect.vue";
 
 const store = useMessageStore();
 const router = useRouter()
@@ -77,17 +78,8 @@ organizer: {id: 0, name: ''}
           label="Location" />
 
       <h3>Who is your organizer?</h3>
-           <label>Select an Organizer</label>
-            <select v-model="event.organizer.id">
-              <option
-                  v-for="option in organizer"
-                  :value="option.id"
-                  :key="option.id"
-                  :selected="option.id === event.organizer.id"
-                >
-                {{ option.name }}
-              </option>
-            </select>
+      <BaseSelect v-model="event.organizer.id" label="Organizer" :options="organizer" />
+
 
       <button class="button" type="submit">Submit</button>
     </form>
